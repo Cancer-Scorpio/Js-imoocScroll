@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>无缝滚动</title>
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+	
+</head>
+<body>
+<div id="panel">
+	<div class="panel_head">慕课网最新课程</div>
+	<div id="content" class="con">
+		<ul>
+			<li>
+				<a>1、信息滚动效果制作</a>
+				<span>2015-1-1</span>
+			</li>
+			<li>
+				<a>2、商城分类导航效果</a>
+				<span>2015-1-1</span>
+			</li>
+			<li>
+				<a>3、jQuery基础(1)(2)(3)(4)</a>
+				<span>2015-1-1</span>
+			</li>
+			<li>
+				<a>4、jQuery插件</a>
+				<span>2015-1-1</span>
+			</li>
+			<li>
+				<a>5、jQuery实践：网页定位导航特效</a>
+				<span>2015-1-1</span>
+			</li>
+			<li>
+				<a>6、jQuery实践：瀑布流布局</a>
+				<span>2015-1-1</span>
+			</li>
+			<li>
+				<a>7、jQuery实践：搜索框制作</a>
+				<span>2015-1-1</span>
+			</li>
+			<li>
+				<a>8、综合网站实践：企业网站综合布局实战</a>
+				<span>2015-1-1</span>
+			</li>
+			<li>
+				<a>9、综合网站实践：实现电商网站</a>
+				<span>2015-1-1</span>
+			</li>
+		</ul>
+	</div>
+</div>
+
+<script>
+	var content = document.getElementById("content");
+	var liHeight = 34; //因为设置了li与li之间的间距是10px，所以是34px。
+	//alert(content.innerHTML);
+	content.innerHTML += content.innerHTML;
+	content.scrollTop = 0;
+	var time;
+
+	function startMove(){
+		content.scrollTop++;
+		time = setInterval("scrollUp()",50);
+	}
+
+	function scrollUp(){
+		if(content.scrollTop % liHeight == 0){
+			clearInterval(time);
+			setTimeout("startMove()",2000);
+		}else{
+			content.scrollTop++;
+			if(content.scrollTop >= content.scrollHeight/2){ //scrollHeight是元素完整高度，offsetHeight是元素可见部分高度
+				content.scrollTop = 0;
+			}
+		}
+	}
+
+	setTimeout("startMove()",2000);
+</script>
+</body>
+</html>
