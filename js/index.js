@@ -8,31 +8,30 @@
 	return eles;
 }*/
 
-
+function scrollUp(){
+		var liHeight = 34;
+		if(content.scrollTop % liHeight == 0){
+			clearInterval(time);
+			setTimeout("startMove()",2000);
+		}else{
+			content.scrollTop++;
+			if(content.scrollTop >= content.scrollHeight/2){ //scrollHeight是元素完整高度，offsetHeight是元素可见部分高度
+				content.scrollTop = 0;
+			}
+		}
+}
 
 function startMove(){
 		content.scrollTop++;
-		time = setInterval(function(){
-			var liHeight = 34;
-			if(content.scrollTop % liHeight == 0){
-				clearInterval(time);
-				setTimeout("startMove()",2000);
-			}else{
-				content.scrollTop++;
-				if(content.scrollTop >= content.scrollHeight/2){ //scrollHeight是元素完整高度，offsetHeight是元素可见部分高度
-					content.scrollTop = 0;
-				}
-			}
-		},50);
+		time = setInterval("scrollUp()",50);
 }
 
 window.onload = function(){
 	var content = document.getElementById("content");
-	var liHeight = 34; //因为设置了li与li之间的间距是10px，所以是34px。
 	content.innerHTML += content.innerHTML;
-	content.scrollTop = 0;
 	var time;
+	content.scrollTop = 0;
 
 	setTimeout("startMove()",2000);
-
+	
 }
