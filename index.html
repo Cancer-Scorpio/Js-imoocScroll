@@ -3,7 +3,7 @@
 <head>
 	<title>无缝滚动</title>
 	<link rel="stylesheet" type="text/css" href="css/index.css">
-	
+	<script type="text/javascript" src="js/index.js"></script>
 </head>
 <body>
 <div id="panel">
@@ -50,32 +50,6 @@
 	</div>
 </div>
 
-<script>
-	var content = document.getElementById("content");
-	var liHeight = 34; //因为设置了li与li之间的间距是10px，所以是34px。
-	//alert(content.innerHTML);
-	content.innerHTML += content.innerHTML;
-	content.scrollTop = 0;
-	var time;
 
-	function startMove(){
-		content.scrollTop++;
-		time = setInterval("scrollUp()",50);
-	}
-
-	function scrollUp(){
-		if(content.scrollTop % liHeight == 0){
-			clearInterval(time);
-			setTimeout("startMove()",2000);
-		}else{
-			content.scrollTop++;
-			if(content.scrollTop >= content.scrollHeight/2){ //scrollHeight是元素完整高度，offsetHeight是元素可见部分高度
-				content.scrollTop = 0;
-			}
-		}
-	}
-
-	setTimeout("startMove()",2000);
-</script>
 </body>
 </html>
